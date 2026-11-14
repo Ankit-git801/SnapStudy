@@ -14,7 +14,7 @@ Transform your handwritten lecture notes or textbook pages into organized, struc
 -   📂 **Subject & Chapter Organization**: Keep your academic life organized with a hierarchical **Subject -> Chapters -> Notes** structure. Rename subjects and combine notes into cohesive chapters anytime.
 -   🧠 **AI Chapter Re-summarization**: When combining multiple notes, the AI writes a fresh, high-level summary that connects all pages logically.
 -   🚀 **Instant Study Mode**: Flip through AI-generated questions with **scrollable content** to test your knowledge right in the app.
--   ⚡ **Speed Optimized**: Uses **Gemini 2.5 Flash** with client-side image compression and resizing for near-instant processing.
+-   ⚡ **Speed Optimized**: Uses **Gemini 2.5 Flash** with client-side image downscaling for near-instant processing.
 -   🎨 **Modern MVVM Architecture**: Built with professional **Clean Architecture** patterns, ensuring a scalable and maintainable codebase.
 
 ---
@@ -35,7 +35,7 @@ Transform your handwritten lecture notes or textbook pages into organized, struc
 
 This app is architected for **zero-cost operation** and high scalability:
 -   **Free Tier Optimized**: Leverages Google's 1,500 free daily requests for Gemini Flash.
--   **Token Efficient**: Implements **Image Pre-processing** (1024px resizing & JPEG compression) to minimize token consumption and reduce latency.
+-   **Token Efficient**: Implements **Image Pre-processing** (downscaling each photo to at most 1024px on its longest side) to minimize token consumption and reduce latency.
 
 ---
 

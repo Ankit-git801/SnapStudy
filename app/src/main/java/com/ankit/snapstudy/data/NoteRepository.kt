@@ -39,7 +39,7 @@ class NoteRepository(
         if (BuildConfig.GEMINI_API_KEY == "NO_API_KEY_FOUND" || BuildConfig.GEMINI_API_KEY.isBlank()) {
             return Result.failure(Exception("Gemini API Key not found. Please add it to local.properties."))
         }
-        val resizedBitmaps = bitmaps.map { resizeAndCompressBitmap(it) }
+        val resizedBitmaps = bitmaps.map { downscaleBitmap(it) }
         val date = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date())
         val defaultTitle = "Scan - $date"
 
@@ -144,11 +144,13 @@ class NoteRepository(
         }
     }
 
-    private fun resizeAndCompressBitmap(bitmap: Bitmap): Bitmap {
-        val maxWidth = 1024
-        val maxHeight = 1024
+    private fun downscaleBitmap(bitmap: Bitmap, maxWidth: Int = 1024, maxHeight: Int = 1024): Bitmap {
         val width = bitmap.width
         val height = bitmap.height
+
+        if (width <= maxWidth && height <= maxHeight) {
+            return bitmap
+        }
 
         val ratio = width.toFloat() / height.toFloat()
         var newWidth = maxWidth
